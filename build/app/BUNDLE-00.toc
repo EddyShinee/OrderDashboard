@@ -1,0 +1,3 @@
+([('app',
+   '/Users/thuanvu/PycharmProjects/ETradingProject/dist/app',
+   'EXECUTABLE')],)
