@@ -49,6 +49,19 @@
                 responsive: true,
             });
 
+            function close_opened_order(ticket_id) {
+                $.ajax({
+                    url: '/close_opened_order',
+                    type: 'GET',
+                    success: function(response){
+                        $('#result_token').text(response.message);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            }
+
             function ping() {
                     $.ajax({
                     url: '/ping_host',
@@ -138,7 +151,7 @@
                             row.appendChild(cell13);
 
                             let cell7 = document.createElement("td");
-                            cell7.textContent = x.commission.toFixed(4);
+                            cell7.textContent = x.commission.toFixed(2);
                             row.appendChild(cell7);
 
                             let cell8 = document.createElement("td");
@@ -147,7 +160,7 @@
                             } else {
                                 cell8.classList.add("red")
                             }
-                            cell8.textContent = x.profit.toFixed(4);
+                            cell8.textContent = x.profit.toFixed(2);
                             row.appendChild(cell8);
 
                             let cell12 = document.createElement("td");
@@ -157,7 +170,7 @@
                             } else {
                                 cell12.classList.add("red")
                             }
-                            cell12.textContent = final.toFixed(4);
+                            cell12.textContent = final.toFixed(2);
                             row.appendChild(cell12);
 
                             let cell9 = document.createElement("td");
@@ -169,6 +182,7 @@
                             row.appendChild(cell10);
 
                             let cell11 = document.createElement("td");
+                            cell11.ticket_id = x.ticket;
                             cell11.textContent = "Quick Closed";
                             row.appendChild(cell11);
                             tbody.appendChild(row);

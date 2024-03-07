@@ -87,3 +87,20 @@ class UserAccount:
         }
         res = MakeRequest(url, param, headers)
         return res.json()
+
+    def close_opened_order(self, ticket_id):
+        token = self.get_token()
+        config_data = self.get_config_data()
+        api_url = config_data['API']['url']
+        path_account_summary = config_data['ORDER']['path_close_order']
+        url = api_url + path_account_summary
+
+        param = {
+            "id": token,
+            "ticket": ticket_id
+        }
+        headers = {
+            "accept": "text/plain",
+        }
+        res = MakeRequest(url, param, headers)
+        return res.json()

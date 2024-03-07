@@ -55,6 +55,12 @@ def get_account_opened_order():
     data = {"message": user_account_opened_order}
     return jsonify(data)
 
+@app.route('/close_opened_order', methods=['GET'])
+def close_opened_order():
+    user_account = UserAccount()
+    user_account_opened_order = user_account.close_opened_order()
+    data = {"message": user_account_opened_order}
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run()
